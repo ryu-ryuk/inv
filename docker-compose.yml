@@ -1,0 +1,28 @@
+services:
+  db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: stockdata
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  api:
+    build: .
+    depends_on:
+      - db
+    environment:
+      # for the api container connection to the db container
+      DATABASE_URL: postgresql://postgres:postgres@db:5432/stockdata
+    ports:
+      - "8000:8000"
+    volumes:
+      # mounting the app directory for live reload during development
+      - ./app:/app/app
+
+volumes:
+  pgdata:
