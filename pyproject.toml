@@ -1,0 +1,18 @@
+[project]
+name = "inv"
+version = "0.1.0"
+description = "FastAPI backend for Invsto"
+authors = [{ name = "ALOK(ryu)", email = "alokraj3850@gmail.com" }]
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+    "sqlalchemy",
+    "psycopg2-binary", # postgresql driver
+    "pydantic",
+    "pandas", # for the trading strategy
+    "httpx", # for testing the api
+    "coverage", # for the test reports
+    "tabulate>=0.9.0", # dep
+]
+
